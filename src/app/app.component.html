@@ -1,9 +1,71 @@
+<div *ngIf="tipoUsuario!=null">
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">BANCA SEGUROS S.A.C</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+    <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+        <a class="nav-link px-3" href="#" (click)="singOut()">Sign out</a>
+      </div>
+    </div>
+  </header>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" type="button" (click)="home()">
+                <span data-feather="home" class="align-text-bottom"></span>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" type="button" (click)="atypicalTransactions()">
+                  <span data-feather="file" class="align-text-bottom"></span>
+                Movimiento Atípicos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" type="button" (click)="bankTransactions()">
+                <span data-feather="users" class="align-text-bottom"></span>
+                Transacciones Bancarias
+              </a>
+            </li>
+            <li class="nav-item" *ngIf="tipoUsuario == '1' || tipoUsuario ==null">
+              <a class="nav-link" type="button" (click)="listUsers()">
+                <span data-feather="users" class="align-text-bottom"></span>
+                Gestionar Usuarios
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="col-md-3 col-lg-2 d-md-block">
+
+      </div>
+      <div class="col-md-9 col-lg-10 d-md-block mt-5">
+        <router-outlet *ngIf="tipoUsuario!=null"></router-outlet>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
+
+
 
 <div class="container">
   <div class="row">
     <div class="col">
-<app-login *ngIf="!visualizarMenu()"></app-login>
-<app-index *ngIf="visualizarMenu()"></app-index>
+<!--<app-login *ngIf="!visualizarMenu()"></app-login>
+<app-index *ngIf="visualizarMenu()"></app-index>-->
+<app-login *ngIf="tipoUsuario==null"></app-login>
+
+
     </div>
   </div>
 </div>
